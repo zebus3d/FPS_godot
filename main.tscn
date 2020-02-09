@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Blender/Exports/scene_01.glb" type="PackedScene" id=1]
+[ext_resource path="res://Materials/Gris_medio.tres" type="Material" id=2]
+[ext_resource path="res://Materials/Suelo.tres" type="Material" id=3]
+[ext_resource path="res://main.gd" type="Script" id=4]
+[ext_resource path="res://PlayerKinematicBody.gd" type="Script" id=5]
+
+[sub_resource type="ProceduralSky" id=1]
+ground_bottom_color = Color( 0.0431373, 0.0509804, 0.0588235, 1 )
+ground_horizon_color = Color( 0.117647, 0.0823529, 0.054902, 1 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_custom_fov = 67.2
+ambient_light_energy = 0.48
+ambient_light_sky_contribution = 0.4
+tonemap_mode = 2
+tonemap_exposure = 0.82
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.450381
+height = 2.0999
+
+[node name="Main" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="floor" parent="." index="0"]
+material/0 = ExtResource( 3 )
+
+[node name="Obstacle001" parent="." index="1"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle002" parent="." index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle003" parent="." index="3"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle004" parent="." index="4"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle005" parent="." index="5"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle006" parent="." index="6"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle009" parent="." index="9"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle010" parent="." index="10"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle011" parent="." index="11"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle012" parent="." index="12"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle013" parent="." index="13"]
+material/0 = ExtResource( 2 )
+
+[node name="Obstacle014" parent="." index="14"]
+material/0 = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="15"]
+environment = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="16"]
+transform = Transform( 0.802373, -0.360156, 0.475904, -0.316129, 0.419874, 0.850746, -0.506221, -0.833063, 0.22304, 0, 22.0768, 0 )
+light_color = Color( 1, 0.988235, 0.854902, 1 )
+light_energy = 0.31
+shadow_enabled = true
+shadow_contact = 1.72
+
+[node name="PlayerKinematicBody" type="KinematicBody" parent="." index="17"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75615, 0 )
+script = ExtResource( 5 )
+
+[node name="CapsuleCollisionShape" type="CollisionShape" parent="PlayerKinematicBody" index="0"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Head" type="Spatial" parent="PlayerKinematicBody/CapsuleCollisionShape" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+
+[node name="Camera" type="Camera" parent="PlayerKinematicBody/CapsuleCollisionShape/Head" index="0"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+fov = 50.0
+far = 200.0
