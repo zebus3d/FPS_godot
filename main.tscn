@@ -14,6 +14,7 @@ ground_horizon_color = Color( 0.117647, 0.0823529, 0.054902, 1 )
 background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_custom_fov = 67.2
+ambient_light_color = Color( 0.745098, 0.952941, 0.988235, 1 )
 ambient_light_energy = 0.48
 ambient_light_sky_contribution = 0.4
 tonemap_mode = 2
@@ -70,10 +71,18 @@ environment = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="16"]
 transform = Transform( 0.802373, -0.360156, 0.475904, -0.316129, 0.419874, 0.850746, -0.506221, -0.833063, 0.22304, 0, 22.0768, 0 )
-light_color = Color( 1, 0.988235, 0.854902, 1 )
-light_energy = 0.83
+light_color = Color( 1, 0.992157, 0.898039, 1 )
+light_energy = 1.02
+light_specular = 0.11
 shadow_enabled = true
+shadow_color = Color( 0.0352941, 0.0156863, 0.196078, 1 )
+shadow_bias = -0.04
 shadow_contact = 1.72
+directional_shadow_split_1 = 0.3
+directional_shadow_split_2 = 0.4
+directional_shadow_normal_bias = 1.0
+directional_shadow_bias_split_scale = 0.78
+directional_shadow_max_distance = 36.4
 
 [node name="PlayerKinematicBody" type="KinematicBody" parent="." index="17"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75615, 0 )
