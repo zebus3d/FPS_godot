@@ -77,13 +77,12 @@ light_energy = 0.89
 light_specular = 0.11
 shadow_enabled = true
 shadow_color = Color( 0.0352941, 0.0156863, 0.196078, 1 )
-shadow_bias = -0.04
+shadow_bias = 0.03
 shadow_contact = 1.72
-directional_shadow_split_1 = 0.3
-directional_shadow_split_2 = 0.4
-directional_shadow_normal_bias = 1.0
-directional_shadow_bias_split_scale = 0.78
-directional_shadow_max_distance = 36.4
+directional_shadow_normal_bias = 0.17
+directional_shadow_bias_split_scale = 1.0
+directional_shadow_depth_range = 1
+directional_shadow_max_distance = 200.0
 
 [node name="PlayerKinematicBody" type="KinematicBody" parent="." index="17"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75615, 0 )
