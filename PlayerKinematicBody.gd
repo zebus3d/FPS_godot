@@ -3,6 +3,8 @@ extends KinematicBody
 
 var camera_angle = 0
 var mouse_sensitivity = 0.3
+var camera_change = Vector2()
+
 var velocity = Vector3()
 var direction = Vector3()
 
@@ -21,22 +23,25 @@ var jump_height = 15
 const FLY_SPEED = 40
 const FLY_ACCEL = 4
 
-func _ready():
-	pass
 
-# warning-ignore:unused_argument
 func _physics_process(delta):
+	aim()
 	walk(delta)
 	
 func _input(event):
 	if event is InputEventMouseMotion:
-		$CapsuleCollisionShape/Head.rotate_z(deg2rad(event.relative.x * mouse_sensitivity))
-		
-		var change = -event.relative.y * mouse_sensitivity
+		camera_change = event.relative
+			
+func aim():
+	if camera_change.length() > 0:
+		$CapsuleCollisionShape/Head.rotate_z(deg2rad(camera_change.x * mouse_sensitivity))
+			
+		var change = -camera_change.y * mouse_sensitivity
 		if change + camera_angle < 90 and change + camera_angle > -90:
 			$CapsuleCollisionShape/Head/Camera.rotate_x(deg2rad(change))
 			camera_angle += change
-			
+		camera_change = Vector2()
+	
 func walk(delta):
 	# reset player direction
 	direction = Vector3()
@@ -84,7 +89,7 @@ func walk(delta):
 	# move
 	velocity = move_and_slide(velocity, Vector3(0, 1, 0))
 	
-	if Input.is_action_pressed("jump"):
+	if is_on_floor() and Input.is_action_pressed("jump"):
 		velocity.y = jump_height
 
 func fly(delta):
