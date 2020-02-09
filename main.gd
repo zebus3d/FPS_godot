@@ -3,10 +3,12 @@ extends Spatial
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-# Para que en html5 capture el raton hay que hacerlo 
-# tambien en la funcion _input 
-func _input(event):
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+# Para que en html5 capture el raton solo al hacer click: 
+# en Proyecto Ajustes de Proyecto > Mapa de Entrada habilite left_click.
+# se puede usar _input(event) o _unhandled_input(event)
+func _unhandled_input(event):
+	if Input.is_action_pressed("left_click"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
