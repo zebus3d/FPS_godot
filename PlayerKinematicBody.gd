@@ -2,7 +2,7 @@ extends KinematicBody
 
 
 var camera_angle = 0
-var mouse_sensitivity = 0.3
+var mouse_sensitivity = 0.12
 var camera_change = Vector2()
 
 var velocity = Vector3()
